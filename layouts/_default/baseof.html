@@ -45,6 +45,10 @@
   {{ with $stylesheet.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
   {{ end }}
+
+  {{ $style := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }} 
+  <link rel="stylesheet" href="{{ $style.Permalink }}" emotion="🤩">
+
 </head>
 
 <body class="text-dark bg-light">
