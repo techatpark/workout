@@ -60,13 +60,16 @@ jobs:
           path: ./public
 
   # Deployment job
-#   deploy:
-#     environment:
-#       name: github-pages
-#       url: ${{ steps.deployment.outputs.page_url }}
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#       - name: Deploy to GitHub Pages
-#         id: deployment
-#         uses: actions/deploy-pages@v2
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy Static Assets
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.WORKOUT_HOST }}
+          username: ${{ secrets.WORKOUT_USERNAME }}
+          password: ${{ secrets.WORKOUT_PASSWORD }}
+          source: "public"
+          target: ${{ secrets.WORKOUT_TARGET_DIR }}
+          strip_components: 1
