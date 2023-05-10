@@ -53,12 +53,6 @@ jobs:
         run: |
           hugo \
             --minify
-
-  # Deployment job
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy Static Assets
         uses: appleboy/scp-action@master
         with:
@@ -67,4 +61,4 @@ jobs:
           password: ${{ secrets.WORKOUT_PASSWORD }}
           source: "public"
           target: ${{ secrets.WORKOUT_TARGET_DIR }}
-          strip_components: 1
+          strip_components: 1   
