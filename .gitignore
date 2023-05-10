@@ -3,3 +3,5 @@ public/
 resources/
 themes/
 *.backup
+
+node_modules/
