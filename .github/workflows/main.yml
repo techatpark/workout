@@ -60,5 +60,5 @@ jobs:
           username: ${{ secrets.WORKOUT_USERNAME }}
           password: ${{ secrets.WORKOUT_PASSWORD }}
           source: "public"
-          target: ${{ secrets.WORKOUT_TARGET_DIR }}
+          target: ${{ secrets.WORKOUT_STATIC_DIR }}
           strip_components: 1   
