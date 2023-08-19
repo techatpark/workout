@@ -1,7 +1,7 @@
 baseurl = "/"
 languageCode = "en-us"
 languageLang = "en"
-title = "Workout School"
+title = "Workout"
 defaultContentLanguage = "en"
 
 [security]
