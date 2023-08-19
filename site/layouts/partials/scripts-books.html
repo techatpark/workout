@@ -1,0 +1,95 @@
+<div class="modal fade" id="noteModel" tabindex="-1" aria-labelledby="noteModelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="noteModelLabel">Note</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <textarea class="form-control" id="noteText" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="imageModel" tabindex="-1" aria-labelledby="imageModelLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-50" id="imageModelLabel">Image</h5>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+          <label class="btn btn-outline-primary" for="btnradio1">Flashlight</label>
+        
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio2">Marker</label>
+        
+          
+        </div>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
+      </div>
+      <div class="modal-body d-flex align-items-center">
+          <div class="box w-100 text-success text-center">
+            <img class="figure-img w-50 img-fluid rounded" src="/images/books/12th-botany/botany/eco-system/7.2:diagrammatic-representation-of-trophic-levels.png">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end w-25" tabindex="-1" id="offcanvas-videos" data-bs-keyboard="false" data-bs-backdrop="false">
+  <div class="offcanvas-header">
+      <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas-videos">Videos</h6>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <ul class="list-group">
+        {{ range .Params.References.Videos }}
+        {{ $video_segments := split . ":"  }}
+        {{ $video_provider := index $video_segments 0  }}
+        <li class="list-group-item">
+          <div class="ratio ratio-16x9">
+            {{if eq $video_provider "youtube"}}
+            <iframe src="https://www.youtube.com/embed/{{ index $video_segments 1 }}" title="YouTube video" allowfullscreen></iframe>
+            {{ else if eq $video_provider "vimeo"}}
+            <iframe src="https://player.vimeo.com/video/777650452?h=25996e5502" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            {{ else }}
+
+            {{ errorf "Video provider %q is not supported" $video_provider }}
+
+            {{ end }}
+          </div>
+        </li>
+      {{ end }}
+      </ul>
+  </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end w-25" tabindex="-1" id="offcanvas-links" data-bs-keyboard="false" data-bs-backdrop="false">
+  <div class="offcanvas-header">
+      <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas-links">Links</h6>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ol class="list-group list-group-numbered">
+      {{ range .Params.References.Links }}
+      <li class="list-group-link">
+        <a href="{{ . }}" target="_blank">{{ . }}</a>
+      </li>
+    {{ end }}
+    </ol>
+</div>
+</div>
+
+<script type="text/javascript" src="/js/chapter.js"></script>
+
