@@ -14,6 +14,6 @@
 module.exports = {
     files: ["dist/css/*.css", "dist/js/*.js", "dist/**/*.html"],
     serveStatic: ['dist'],
-    proxy: "https://workout.techatpark.com",
+    proxy: "http://localhost:8080",
     ghostMode: false,
 };
